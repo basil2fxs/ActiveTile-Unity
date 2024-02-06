@@ -41,13 +41,17 @@ public class TileGridGenerator : EditorWindow
 
         int tileNumber = 1; // Start numbering tiles from 1
 
-        for (int y = gridHeight - 1; y >= 0; y--) // Start from the bottom and move upwards
+        for (int y = 0; y < gridHeight; y++) // Iterate over what are now effectively horizontal rows
         {
-            int xOffset = (gridHeight - 1 - y) % 2 == 0 ? 0 : gridWidth - 1; // Offset for alternating rows
+            bool isEvenRow = y % 2 == 0;
 
-            for (int x = xOffset; x >= 0 && x < gridWidth; x += (gridHeight - 1 - y) % 2 == 0 ? 1 : -1)
+            for (int x = 0; x < gridWidth; x++) // Iterate over what are now effectively vertical columns
             {
-                Vector3 position = new Vector3(x * spacing, (gridHeight - 1 - y) * spacing, 0); // Adjust for vertical grid
+                int actualX = isEvenRow ? x : gridWidth - 1 - x; // Reverse direction for odd rows
+
+                // For a clockwise rotation, adjust the calculation of position
+                // Note: This assumes the origin (0,0) is at the bottom left
+                Vector3 position = new Vector3((gridHeight - 1 - y) * spacing, actualX * spacing, 0);
                 GameObject newTile = (GameObject)PrefabUtility.InstantiatePrefab(tilePrefab, parentObject.transform);
                 newTile.transform.position = position;
 
