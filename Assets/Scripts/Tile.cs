@@ -9,13 +9,25 @@ public class Tile : MonoBehaviour
     void Awake()
     {
         tileRenderer = GetComponent<Renderer>();
+        if (tileRenderer == null)
+        {
+            Debug.LogError("MeshRenderer component not found.", this);
+        }
     }
+
 
     public void SetActiveState(bool isActive)
     {
-        // Directly set the material based on the isActive flag
-        tileRenderer.material = isActive ? activeMaterial : inactiveMaterial;
+        if (tileRenderer != null) // Check if the MeshRenderer reference is not null
+        {
+            tileRenderer.material = isActive ? activeMaterial : inactiveMaterial;
+        }
+        else
+        {
+            Debug.LogWarning("Trying to access a destroyed MeshRenderer.");
+        }
     }
+
 
     void OnMouseDown()
     {

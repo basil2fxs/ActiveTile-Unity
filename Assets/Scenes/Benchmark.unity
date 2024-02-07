@@ -8471,8 +8471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileManager: {fileID: 2088425659}
-  listeningIPAddress: 192.168.0.201
-  remoteServerPort: 2317
   portTileRanges:
   - port: 21
     startTile: 1
@@ -8483,6 +8481,8 @@ MonoBehaviour:
   - port: 23
     startTile: 185
     endTile: 253
+  serverIP: 192.168.0.201
+  serverPort: 2317
 --- !u!4 &1119713293
 Transform:
   m_ObjectHideFlags: 0
@@ -11366,6 +11366,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4829631000792541878, guid: 3fd86b8e87c1df0439ad13e5e55bc314, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d78fb7748755358438be1d2bec8e313a, type: 2}
     - target: {fileID: 6163862182558574571, guid: 3fd86b8e87c1df0439ad13e5e55bc314, type: 3}
       propertyPath: m_Name
       value: Tile 2
