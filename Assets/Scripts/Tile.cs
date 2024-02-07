@@ -2,32 +2,38 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Material activeMaterial; // Assign in the inspector
-    public Material inactiveMaterial; // Assign in the inspector
+    public Material activeMaterial;
+    public Material inactiveMaterial;
     private Renderer tileRenderer;
+    private bool isActive = false; // Added to track the tile's state
 
     void Awake()
     {
         tileRenderer = GetComponent<Renderer>();
         if (tileRenderer == null)
         {
-            Debug.LogError("MeshRenderer component not found.", this);
+            Debug.LogError("Renderer component not found.", this);
         }
     }
 
-
     public void SetActiveState(bool isActive)
     {
-        if (tileRenderer != null) // Check if the MeshRenderer reference is not null
+        this.isActive = isActive; // Update the state
+        if (tileRenderer != null)
         {
             tileRenderer.material = isActive ? activeMaterial : inactiveMaterial;
         }
         else
         {
-            Debug.LogWarning("Trying to access a destroyed MeshRenderer.");
+            Debug.LogWarning("Trying to access a destroyed Renderer.");
         }
     }
 
+    // Added to get the tile's state
+    public bool IsActive()
+    {
+        return isActive;
+    }
 
     void OnMouseDown()
     {

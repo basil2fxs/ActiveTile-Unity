@@ -23,7 +23,6 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    // New method to handle tile state updates based on custom ranges
     public void UpdateTilesInRange(string hexData, int startTile, int endTile)
     {
         int direction = startTile <= endTile ? 1 : -1;
@@ -35,5 +34,15 @@ public class TileManager : MonoBehaviour
             bool isActive = tileStateHex == "0A";
             SetTileState(tileIndex, isActive);
         }
+    }
+
+    // Adjusted to use the new IsActive method in Tile class
+    public bool GetTileState(int tileIndex)
+    {
+        if (tileDictionary.TryGetValue(tileIndex, out Tile tile))
+        {
+            return tile.IsActive(); // Use the IsActive method to get the tile's state
+        }
+        return false;
     }
 }
