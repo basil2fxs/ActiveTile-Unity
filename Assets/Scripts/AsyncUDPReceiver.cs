@@ -7,70 +7,86 @@ using UnityEngine;
 
 public class AsyncUDPReceiver : MonoBehaviour
 {
-    public TileManager tileManager;
+    public TileManager tileManager; // Assign in the Unity Editor
 
-    [Serializable]
-    public struct PortTileRange
+    [SerializeField]
+    private string serverIP = "192.168.0.201"; // The IP address to bind to
+    [SerializeField]
+    private int serverPort = 2317; // The port to listen on
+
+    void Start()
     {
-        public int port;
-        public int startTile;
-        public int endTile;
+        Debug.Log($"Starting UDP listener on {serverIP}:{serverPort}");
+        ListenForMessagesAsync();
     }
 
-    public PortTileRange[] portTileRanges;
-
-    private void Start()
+    private async void ListenForMessagesAsync()
     {
-        foreach (var range in portTileRanges)
+        IPEndPoint localEndPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPort);
+        using (UdpClient client = new UdpClient(localEndPoint))
         {
-            ListenForMessagesAsync(range.port, range.startTile, range.endTile);
-        }
-    }
-
-    private async void ListenForMessagesAsync(int port, int startTile, int endTile)
-    {
-        using (var client = new UdpClient(port))
-        {
-            IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, port);
+            Debug.Log($"Listening for UDP datagrams on {serverIP}:{serverPort}...");
             try
             {
                 while (true)
                 {
-                    var result = await client.ReceiveAsync();
-                    string hexString = BitConverter.ToString(result.Buffer).Replace("-", "");
-                    if (hexString.StartsWith("FC"))
+                    UdpReceiveResult result = await client.ReceiveAsync();
+                    string senderAddress = result.RemoteEndPoint.Address.ToString();
+                    int senderPort = result.RemoteEndPoint.Port;
+
+                    // Check if the sender's port is one of the expected ports
+                    if (senderPort == 21 || senderPort == 22 || senderPort == 23)
                     {
-                        ProcessReceivedData(hexString, startTile, endTile);
+                        string hexString = BitConverter.ToString(result.Buffer).Replace("-", "");
+                        Debug.Log($"Received UDP data from {senderAddress}:{senderPort}: {hexString}");
+
+                        // Process the received data
+                        ProcessReceivedData(hexString, senderPort);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Received data from unexpected port {senderPort}. Ignoring.");
                     }
                 }
             }
             catch (Exception e)
             {
-                Debug.LogError($"Error receiving UDP data on port {port}: {e.Message}");
+                Debug.LogError($"Error in UDP receive loop: {e}");
             }
         }
     }
 
-    private void ProcessReceivedData(string hexData, int startTile, int endTile)
+    private void ProcessReceivedData(string hexData, int senderPort)
     {
-        hexData = hexData.Substring(2); // Skip "FC"
-        int lengthIndicator = int.Parse(hexData.Substring(0, 2), NumberStyles.HexNumber) * 2; // Number of characters to represent tile states
-        hexData = hexData.Substring(2); // Move past the length indicator
-
-        string tileStates = hexData.Substring(0, lengthIndicator);
-
-        // Iterate through the tile states to identify and log stepped-on tiles
-        for (int i = 0; i < tileStates.Length / 2; i++)
+        // Assuming the hexData starts with "FC", followed by tile data
+        if (!hexData.StartsWith("FC"))
         {
-            string tileStateHex = tileStates.Substring(i * 2, 2);
-            if (tileStateHex == "0A") // If the tile is being stepped on
-            {
-                int tileIndex = startTile + i;
-                Debug.Log($"Tile {tileIndex} is being stepped on.");
-            }
+            Debug.LogWarning($"Data does not start with 'FC'. Data: {hexData}");
+            return;
         }
 
-        // Update tiles within the specified range
-        tileManager.UpdateTilesInRange(tileStates, startTile, endTile);
+        hexData = hexData.Substring(4); // Skip "FC" and the length indicator, assuming 2 characters for length.
+
+        // Example of processing the data: Log each tile's state
+        for (int i = 0; i < hexData.Length / 2; i++)
+        {
+            string tileStateHex = hexData.Substring(i * 2, 2).ToUpper();
+            bool isActive = tileStateHex == "0A";
+
+            // Update the specific tile based on its index and active state
+            // Assuming a method in TileManager that updates tiles based on index and active state:
+            // tileIndex calculation needs to be adjusted based on your game's tile indexing logic
+            int tileIndex = CalculateTileIndex(i, senderPort);
+            tileManager.UpdateTileState(tileIndex, isActive);
+        }
+    }
+
+    // Placeholder for a method to calculate tile index based on order and sender port
+    private int CalculateTileIndex(int order, int senderPort)
+    {
+        // Implement the logic to calculate the tile index based on the order in the data string and sender port
+        // This is highly dependent on how your tiles are organized and mapped to the data
+        // For example, if each port corresponds to a different set of tiles:
+        return order; // Placeholder calculation
     }
 }

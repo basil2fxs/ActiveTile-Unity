@@ -8471,16 +8471,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileManager: {fileID: 2088425659}
+  listeningIPAddress: 192.168.0.201
+  remoteServerPort: 2317
   portTileRanges:
   - port: 21
-    startTile: 253
-    endTile: 162
+    startTile: 1
+    endTile: 92
   - port: 22
-    startTile: 161
-    endTile: 70
+    startTile: 93
+    endTile: 184
   - port: 23
-    startTile: 69
-    endTile: 1
+    startTile: 185
+    endTile: 253
 --- !u!4 &1119713293
 Transform:
   m_ObjectHideFlags: 0

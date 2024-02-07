@@ -13,17 +13,26 @@ public class Tile : MonoBehaviour
 
     public void SetActiveState(bool isActive)
     {
+        // Directly set the material based on the isActive flag
         tileRenderer.material = isActive ? activeMaterial : inactiveMaterial;
     }
 
-    // Method to simulate stepping on the tile via mouse click
     void OnMouseDown()
     {
-        // Toggle the tile's active state on mouse click
-        bool isActive = tileRenderer.material == inactiveMaterial;
-        SetActiveState(isActive);
-
-        // Log the tile's name when clicked
+        // Activate the tile when the mouse button is pressed
+        SetActiveState(true);
         Debug.Log($"{gameObject.name} has been activated by clicking.");
+    }
+
+    void OnMouseUp()
+    {
+        // Deactivate the tile when the mouse button is released
+        SetActiveState(false);
+    }
+
+    void OnMouseExit()
+    {
+        // Optional: Deactivate the tile if the mouse exits while pressed
+        SetActiveState(false);
     }
 }
