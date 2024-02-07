@@ -6,9 +6,12 @@ using UnityEngine;
 public class UDPSender : MonoBehaviour
 {
     public TileManager tileManager; // Assign in the Inspector
+    public AsyncUDPReceiver asyncUDPReceiver;//referencing the UDP reciever
 
     public string sourceIP = "192.168.0.201";
     public string destIP = "192.168.0.7";
+    public string black = "000000";
+    public string blue = "0000FE";
     public int sourcePort = 2317; // Source port to bind to
 
     private UdpClient udpClient;
@@ -46,9 +49,9 @@ public class UDPSender : MonoBehaviour
 
     public void SendTileStates()
     {
-        SendTilesStateForPort(1, 92, 21);
-        SendTilesStateForPort(93, 184, 22);
-        SendTilesStateForPort(185, 253, 23);
+        SendTilesStateForPort(asyncUDPReceiver.portTileRanges[0].startTile, asyncUDPReceiver.portTileRanges[0].endTile, asyncUDPReceiver.portTileRanges[0].port);
+        SendTilesStateForPort(asyncUDPReceiver.portTileRanges[1].startTile, asyncUDPReceiver.portTileRanges[1].endTile, asyncUDPReceiver.portTileRanges[1].port);
+        SendTilesStateForPort(asyncUDPReceiver.portTileRanges[2].startTile, asyncUDPReceiver.portTileRanges[2].endTile, asyncUDPReceiver.portTileRanges[2].port);
     }
 
     private void SendTilesStateForPort(int startTile, int endTile, int destPort)
@@ -58,7 +61,7 @@ public class UDPSender : MonoBehaviour
         for (int tileIndex = startTile; tileIndex <= endTile; tileIndex++)
         {
             bool isActive = tileManager.GetTileState(tileIndex);
-            hexData += isActive ? "0000FE" : "000000"; // Simplified data representation
+            hexData += isActive ? blue : black; // Simplified data representation
         }
 
         byte[] byteData = ConvertHexStringToByteArray(hexData);
@@ -68,7 +71,7 @@ public class UDPSender : MonoBehaviour
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(destIP), destPort);
             // Send the data
             udpClient.Send(byteData, byteData.Length, endPoint);
-            Debug.Log($"Sent tile states to {destIP}:{destPort}: {BitConverter.ToString(byteData).Replace("-", "")}");
+            //Debug.Log($"Sent tile states to {destIP}:{destPort}: {BitConverter.ToString(byteData).Replace("-", "")}");
         }
         catch (Exception ex)
         {
