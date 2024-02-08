@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections.Concurrent;
 
-public class AsyncUDPReceiver : MonoBehaviour
+public class AsyncUDPReceiverNormalLevel : MonoBehaviour
 {
     public TileManager tileManager; // Assign in the Unity Editor
     private ConcurrentQueue<Action> mainThreadActions = new ConcurrentQueue<Action>();

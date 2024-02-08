@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Benchmark.unity
     guid: 2151ac46e91502241836d9dafc2711f8
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 66d39bb2e9c59eb47a7cd5b0b7326cff
   m_configObjects: {}
