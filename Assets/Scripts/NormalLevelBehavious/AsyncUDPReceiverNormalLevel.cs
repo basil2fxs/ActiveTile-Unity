@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 public class AsyncUDPReceiverNormalLevel : MonoBehaviour
 {
-    public TileManager tileManager; // Assign in the Unity Editor
+    public TileManagerNormalLevel tileManager; //change for tile manager in scene, this links it
     private ConcurrentQueue<Action> mainThreadActions = new ConcurrentQueue<Action>();
     
     [Serializable]
@@ -21,9 +21,9 @@ public class AsyncUDPReceiverNormalLevel : MonoBehaviour
     public PortTileRange[] portTileRanges;
 
     [SerializeField]
-    public string serverIP = "192.168.0.201"; // The IP address to bind to
+    public string serverIP = "192.168.0.201"; 
     [SerializeField]
-    public int serverPort = 2317; // The port to listen on
+    public int serverPort = 2317; 
 
     private UdpClient client;
     private bool isListening;
@@ -41,17 +41,17 @@ public class AsyncUDPReceiverNormalLevel : MonoBehaviour
     private void StartListening()
     {
         isListening = true;
-        Task.Run(() => ListenForMessagesAsync()); // Use Task.Run to move execution to a background thread
+        Task.Run(() => ListenForMessagesAsync()); 
     }
 
     private void StopListening()
     {
-        isListening = false; // Signal the listening loop to stop
+        isListening = false; 
 
         if (client != null)
         {
-            client.Close(); // Properly close and dispose of the UdpClient
-            client = null; // Help ensure the object is released for garbage collection
+            client.Close(); 
+            client = null; 
         }
     }
 
@@ -75,21 +75,16 @@ public class AsyncUDPReceiverNormalLevel : MonoBehaviour
                 }
                 catch (ObjectDisposedException)
                 {
-                    // This catch block is specifically to handle the case when the UdpClient is disposed
-                    // We simply break out of the loop in this case as it's a signal that we're done listening (e.g., due to scene change)
-                    // Debug.LogWarning("UdpClient has been disposed. Exiting receive loop.");
                     break;
                 }
             }
         }
         catch (Exception e)
         {
-            // This is a more general exception catch block for other types of exceptions
             Debug.LogError($"Error in UDP receive loop: {e}");
         }
         finally
         {
-            // Always ensure the client is closed in the finally block to handle all exit scenarios
             client?.Close();
         }
     }
@@ -97,15 +92,15 @@ public class AsyncUDPReceiverNormalLevel : MonoBehaviour
 
     private void ProcessReceivedData(string hexData, int senderPort)
     {
-        hexData = hexData.Substring(4); // Assuming your existing logic remains the same
+        hexData = hexData.Substring(4);
 
         for (int i = 0; i < hexData.Length / 2; i++)
         {
             string tileStateHex = hexData.Substring(i * 2, 2).ToUpper();
             bool isActive = tileStateHex == "0A";
-            int tileIndex = CalculateTileIndex(i, senderPort);
+            int tileIndex = CalculateTileIndex(i, senderPort); //get tile number from 1-tilemax
 
-            // Queue the update action
+            
             mainThreadActions.Enqueue(() =>
             {
                 tileManager.SetTileState(tileIndex, isActive);
@@ -115,7 +110,6 @@ public class AsyncUDPReceiverNormalLevel : MonoBehaviour
 
     void Update()
     {
-        // Execute all queued actions on the main thread
         while (mainThreadActions.TryDequeue(out Action action))
         {
             action.Invoke();
@@ -123,7 +117,6 @@ public class AsyncUDPReceiverNormalLevel : MonoBehaviour
     }   
 
 
-    // Placeholder for a method to calculate tile index based on order and sender port
     private int CalculateTileIndex(int order, int senderPort)
     {
         int portPlace = 0;
@@ -143,9 +136,6 @@ public class AsyncUDPReceiverNormalLevel : MonoBehaviour
 
         order = order + portTileRanges[portPlace].startTile;
 
-        // Implement the logic to calculate the tile index based on the order in the data string and sender port
-        // This is highly dependent on how your tiles are organized and mapped to the data
-        // For example, if each port corresponds to a different set of tiles:
-        return order; // Placeholder calculation
+        return order; 
     }
 }

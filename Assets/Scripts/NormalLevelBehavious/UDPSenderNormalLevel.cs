@@ -5,13 +5,20 @@ using UnityEngine;
 
 public class UDPSenderNormalLevel : MonoBehaviour
 {
-    public TileManager tileManager; // Assign in the Inspector
-    public AsyncUDPReceiver asyncUDPReceiver;//referencing the UDP reciever
+    public TileManagerNormalLevel tileManager; // change for the tile manager
+    public AsyncUDPReceiverNormalLevel asyncUDPReceiver; //change for the UDP reciever
 
     public string sourceIP = "192.168.0.201";
     public string destIP = "192.168.0.7";
     public string black = "000000";
+    public string red = "FE0000";
+    public string orange = "FE7F50";
+    public string yellow = "FEFE00";
+    public string green = "00FE00";
     public string blue = "0000FE";
+    public string cyan = "00FEFE";
+    public string purple = "800080";
+    public string pink = "FE00FE";
     public int sourcePort = 2317; // Source port to bind to
 
     private UdpClient udpClient;
@@ -60,8 +67,37 @@ public class UDPSenderNormalLevel : MonoBehaviour
 
         for (int tileIndex = startTile; tileIndex <= endTile; tileIndex++)
         {
-            bool isActive = tileManager.GetTileState(tileIndex);
-            hexData += isActive ? blue : black; // Simplified data representation
+            int currentMaterial = tileManager.GetTileState(tileIndex);
+            switch (currentMaterial)
+            {
+                case 1://black
+                    hexData += black;
+                    break;
+                case 2://red
+                    hexData += red;
+                    break;
+                case 3://orange
+                    hexData += orange;
+                    break;
+                case 4://yellow
+                    hexData += yellow;
+                    break;
+                case 5://green
+                    hexData += green;
+                    break;
+                case 6://blue
+                    hexData += blue;
+                    break;
+                case 7://cyan
+                    hexData += cyan;
+                    break;
+                case 8://purple
+                    hexData += purple;
+                    break;
+                case 9://pink
+                    hexData += pink;
+                    break;
+            }
         }
 
         byte[] byteData = ConvertHexStringToByteArray(hexData);
