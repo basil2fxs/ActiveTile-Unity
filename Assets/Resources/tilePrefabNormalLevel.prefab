@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d78fb7748755358438be1d2bec8e313a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 2
-  safeMaterial: {fileID: 0}
-  pointMaterial: {fileID: 0}
-  neutralMaterial: {fileID: 0}
-  dangerMaterial: {fileID: 0}
-  triggerMaterial: {fileID: 0}
+  safeMaterial: {fileID: 2100000, guid: e3a4070380c2d4349b1e06d6d6c44908, type: 2}
+  pointMaterial: {fileID: 2100000, guid: 04390129acc9f6b48ac7e6da05105472, type: 2}
+  neutralMaterial: {fileID: 2100000, guid: d78fb7748755358438be1d2bec8e313a, type: 2}
+  dangerMaterial: {fileID: 2100000, guid: cd005e58605b0f74289afc94ccbee61b, type: 2}
+  triggerMaterial: {fileID: 2100000, guid: 6fd04d4e3938ca04ba4465fb441248d1, type: 2}

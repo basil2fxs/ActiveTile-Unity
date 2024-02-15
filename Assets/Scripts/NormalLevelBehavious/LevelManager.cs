@@ -31,11 +31,13 @@ public class LevelManager : MonoBehaviour
     IEnumerator Countdown()
     {
         // Assuming numberSetups are correctly configured for 5 to 1 countdown
+        GameManager.instance.SetSafeSpace(true);
         for(int i=0; i<5; i++)
         {
             ApplyConfiguration(numberSetups[i], false);
             yield return new WaitForSeconds(1); // Wait for a second between each number
         }
+        GameManager.instance.SetSafeSpace(false);
         InitializeLevel(0); // Proceed to initialize the first level after the countdown
     }
     public void InitializeLevel(int levelIndex)

@@ -48,23 +48,26 @@ public class TileScript : MonoBehaviour
     IEnumerator FlashDangerTile()
     {
         Material originalMaterial = tileRenderer.material; // Store the original material
+        GameManager.instance?.DeductLife(); // Simplified null-check with '?'
         tileRenderer.material = triggerMaterial; // Directly set to trigger material for flashing effect
         yield return new WaitForSeconds(1); // Wait for 1 second
         tileRenderer.material = originalMaterial; // Revert to the original material
-        GameManager.instance?.DeductLife(); // Simplified null-check with '?'
     }
 
     private void HandleTileInteraction()
     {
-        switch (currentState)
+        if (!(GameManager.instance.IsInSafeSpace))
         {
-            case TileState.Point:
-                SetState(TileState.Neutral); // Change to neutral, simulate scoring points
-                ScoreManager.instance?.AddPoints(100); // Simplified null-check with '?'
-                break;
-            case TileState.Danger:
-                StartCoroutine(FlashDangerTile()); // Flash to indicate a life lost
-                break;
+            switch (currentState)
+            {
+                case TileState.Point:
+                    SetState(TileState.Neutral); // Change to neutral, simulate scoring points
+                    ScoreManager.instance?.AddPoints(true); // Simplified null-check with '?'
+                    break;
+                case TileState.Danger:
+                    StartCoroutine(FlashDangerTile()); // Flash to indicate a life lost
+                    break;
+            }
         }
     }
 

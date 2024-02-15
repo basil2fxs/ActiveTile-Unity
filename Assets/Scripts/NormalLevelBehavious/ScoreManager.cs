@@ -1,38 +1,74 @@
 using UnityEngine;
-using UnityEngine.UI; // Make sure to include this if you're planning to update UI elements like text for scores.
+using UnityEngine.UI; 
+using UnityEngine.SceneManagement;
+
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-    public Text scoreText; // Assume you have a Text UI element for displaying the score.
+    public int pointsToAdd = 100;
+    public int pointsToTake = 50;
+    public Text mainMenuScoreText; // Use in the main menu scene
+    public Text gameScoreText; // Use in the game scene
+    public Button resetScoreButton;
     private int score = 0;
 
     void Awake()
     {
-        // Ensure there's only one instance of the ScoreManager running.
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
-    public void AddPoints(int pointsToAdd)
+    void OnDestroy()
     {
-        score += pointsToAdd;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Attempt to find the Text components again in the newly loaded scene
+        mainMenuScoreText = GameObject.FindWithTag("MainMenuScoreText")?.GetComponent<Text>();
+        gameScoreText = GameObject.FindWithTag("GameScoreText")?.GetComponent<Text>();
+
+        // Update the score UI to reflect current score
         UpdateScoreUI();
     }
 
-    void UpdateScoreUI()
+    public void AddPoints(bool addOrTake)
     {
-        if (scoreText != null) scoreText.text = "Score: " + score;
+        if (!(GameManager.instance.IsInSafeSpace))
+        {
+            if(addOrTake == true)
+            {
+                score += pointsToAdd;
+            }
+            else
+            {
+                score -= pointsToTake;
+            }
+            UpdateScoreUI();    
+        }
+    }
+    public void ResetScore()
+    {
+        score = 0;
+        UpdateScoreUI();
     }
 
-    // Utility method for other scripts to get the current score.
+
+    public void UpdateScoreUI()
+    {
+        if (mainMenuScoreText != null) mainMenuScoreText.text = "End Score: " + score;
+        if (gameScoreText != null) gameScoreText.text = "Score: " + score;
+    }
+
     public int GetCurrentScore()
     {
         return score;
