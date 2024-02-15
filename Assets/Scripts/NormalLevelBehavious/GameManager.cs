@@ -1,32 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Linq;
-
-[System.Serializable]
-public class LeaderboardEntry
-{
-    public string teamName;
-    public int score;
-
-    public LeaderboardEntry(string name, int score)
-    {
-        this.teamName = name;
-        this.score = score;
-    }
-}
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    public List<LeaderboardEntry> leaderboard = new List<LeaderboardEntry>();
-
-    private string leaderboardFilePath;
+    public int lives = 3; // Default number of lives
 
     void Awake()
     {
+        // Ensure there's only one instance of the GameManager running.
         if (instance == null)
         {
             instance = this;
@@ -36,42 +17,22 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        leaderboardFilePath = Application.persistentDataPath + "/leaderboard.json";
-        LoadLeaderboard();
     }
 
-    public void AddScore(string teamName, int score)
+    public void DeductLife()
     {
-        // Update score for the current session
-        // Check if we need to update an existing leaderboard entry
-        var entry = leaderboard.FirstOrDefault(e => e.teamName == teamName);
-        if (entry != null)
+        lives--;
+        // Add any UI update logic here, if needed.
+        if (lives <= 0)
         {
-            entry.score += score;
-        }
-        else
-        {
-            leaderboard.Add(new LeaderboardEntry(teamName, score));
-        }
-        SaveLeaderboard();
-    }
-
-    void SaveLeaderboard()
-    {
-        string json = JsonUtility.ToJson(new { leaderboard = this.leaderboard }, true);
-        File.WriteAllText(leaderboardFilePath, json);
-        Debug.Log("Leaderboard saved");
-    }
-
-    void LoadLeaderboard()
-    {
-        if (File.Exists(leaderboardFilePath))
-        {
-            string json = File.ReadAllText(leaderboardFilePath);
-            this.leaderboard = JsonUtility.FromJson<List<LeaderboardEntry>>(json);
-            Debug.Log("Leaderboard loaded");
+            // Handle game over logic here
+            Debug.Log("Game Over!");
         }
     }
 
-    // Add other GameManager methods here...
+    // Utility method for other scripts to check current lives.
+    public int GetCurrentLives()
+    {
+        return lives;
+    }
 }
