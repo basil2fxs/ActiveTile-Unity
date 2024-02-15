@@ -1575,6 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb38a1081e8f945b3ec089facce8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetScoreButton: {fileID: 1469241525}
 --- !u!1 &2129285252
 GameObject:
   m_ObjectHideFlags: 0
