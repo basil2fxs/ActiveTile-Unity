@@ -5248,6 +5248,514 @@ MonoBehaviour:
       initialState: 0
     - tile: {fileID: 2035536997}
       initialState: 0
+  - name: Level1.1
+    tileConfigs:
+    - tile: {fileID: 1035992376}
+      initialState: 0
+    - tile: {fileID: 740956210}
+      initialState: 0
+    - tile: {fileID: 1647206256}
+      initialState: 0
+    - tile: {fileID: 1301055247}
+      initialState: 0
+    - tile: {fileID: 803724392}
+      initialState: 0
+    - tile: {fileID: 2026291595}
+      initialState: 0
+    - tile: {fileID: 1122876429}
+      initialState: 0
+    - tile: {fileID: 2016630611}
+      initialState: 0
+    - tile: {fileID: 1150450818}
+      initialState: 0
+    - tile: {fileID: 443813040}
+      initialState: 0
+    - tile: {fileID: 677527769}
+      initialState: 0
+    - tile: {fileID: 1320048240}
+      initialState: 0
+    - tile: {fileID: 1990525884}
+      initialState: 0
+    - tile: {fileID: 1347177735}
+      initialState: 0
+    - tile: {fileID: 1111793096}
+      initialState: 0
+    - tile: {fileID: 502573289}
+      initialState: 0
+    - tile: {fileID: 357987136}
+      initialState: 0
+    - tile: {fileID: 1455987276}
+      initialState: 0
+    - tile: {fileID: 1931843913}
+      initialState: 0
+    - tile: {fileID: 951456671}
+      initialState: 0
+    - tile: {fileID: 711796244}
+      initialState: 0
+    - tile: {fileID: 191223203}
+      initialState: 0
+    - tile: {fileID: 1815412118}
+      initialState: 0
+    - tile: {fileID: 860103082}
+      initialState: 0
+    - tile: {fileID: 183856007}
+      initialState: 0
+    - tile: {fileID: 523178803}
+      initialState: 0
+    - tile: {fileID: 1279421874}
+      initialState: 0
+    - tile: {fileID: 932303667}
+      initialState: 0
+    - tile: {fileID: 1898744950}
+      initialState: 0
+    - tile: {fileID: 1433459139}
+      initialState: 0
+    - tile: {fileID: 594221154}
+      initialState: 0
+    - tile: {fileID: 162134617}
+      initialState: 0
+    - tile: {fileID: 239425471}
+      initialState: 0
+    - tile: {fileID: 44996711}
+      initialState: 0
+    - tile: {fileID: 192160664}
+      initialState: 0
+    - tile: {fileID: 51421050}
+      initialState: 0
+    - tile: {fileID: 946241574}
+      initialState: 0
+    - tile: {fileID: 1864161783}
+      initialState: 0
+    - tile: {fileID: 1508516045}
+      initialState: 0
+    - tile: {fileID: 338029846}
+      initialState: 0
+    - tile: {fileID: 1780982106}
+      initialState: 0
+    - tile: {fileID: 1049692710}
+      initialState: 0
+    - tile: {fileID: 1064193425}
+      initialState: 0
+    - tile: {fileID: 1389729078}
+      initialState: 0
+    - tile: {fileID: 1586585201}
+      initialState: 0
+    - tile: {fileID: 1225334519}
+      initialState: 0
+    - tile: {fileID: 1739672812}
+      initialState: 0
+    - tile: {fileID: 1800204448}
+      initialState: 0
+    - tile: {fileID: 1912393314}
+      initialState: 1
+    - tile: {fileID: 806600884}
+      initialState: 2
+    - tile: {fileID: 355678286}
+      initialState: 2
+    - tile: {fileID: 1547227724}
+      initialState: 1
+    - tile: {fileID: 228169463}
+      initialState: 2
+    - tile: {fileID: 1128060728}
+      initialState: 2
+    - tile: {fileID: 274408243}
+      initialState: 2
+    - tile: {fileID: 505015612}
+      initialState: 2
+    - tile: {fileID: 318472709}
+      initialState: 1
+    - tile: {fileID: 1713812061}
+      initialState: 3
+    - tile: {fileID: 469916108}
+      initialState: 3
+    - tile: {fileID: 540380020}
+      initialState: 1
+    - tile: {fileID: 2126597402}
+      initialState: 2
+    - tile: {fileID: 590032562}
+      initialState: 1
+    - tile: {fileID: 514082276}
+      initialState: 2
+    - tile: {fileID: 2046094290}
+      initialState: 2
+    - tile: {fileID: 1685534750}
+      initialState: 2
+    - tile: {fileID: 476326605}
+      initialState: 1
+    - tile: {fileID: 2038683275}
+      initialState: 2
+    - tile: {fileID: 735496468}
+      initialState: 0
+    - tile: {fileID: 788189752}
+      initialState: 0
+    - tile: {fileID: 323930504}
+      initialState: 0
+    - tile: {fileID: 896335215}
+      initialState: 0
+    - tile: {fileID: 991414237}
+      initialState: 1
+    - tile: {fileID: 1741375578}
+      initialState: 2
+    - tile: {fileID: 532100707}
+      initialState: 2
+    - tile: {fileID: 112269449}
+      initialState: 2
+    - tile: {fileID: 668957696}
+      initialState: 1
+    - tile: {fileID: 382585125}
+      initialState: 2
+    - tile: {fileID: 660064542}
+      initialState: 2
+    - tile: {fileID: 1435404325}
+      initialState: 2
+    - tile: {fileID: 1778060034}
+      initialState: 3
+    - tile: {fileID: 928046957}
+      initialState: 3
+    - tile: {fileID: 858271865}
+      initialState: 2
+    - tile: {fileID: 565423966}
+      initialState: 1
+    - tile: {fileID: 1070348081}
+      initialState: 2
+    - tile: {fileID: 1029125477}
+      initialState: 2
+    - tile: {fileID: 1515788802}
+      initialState: 1
+    - tile: {fileID: 722910971}
+      initialState: 2
+    - tile: {fileID: 1920863459}
+      initialState: 2
+    - tile: {fileID: 1439057396}
+      initialState: 2
+    - tile: {fileID: 1623338887}
+      initialState: 1
+    - tile: {fileID: 601841115}
+      initialState: 0
+    - tile: {fileID: 1681417446}
+      initialState: 0
+    - tile: {fileID: 1971853099}
+      initialState: 0
+    - tile: {fileID: 895402016}
+      initialState: 0
+    - tile: {fileID: 751664558}
+      initialState: 2
+    - tile: {fileID: 935644323}
+      initialState: 2
+    - tile: {fileID: 619487050}
+      initialState: 1
+    - tile: {fileID: 1255827978}
+      initialState: 2
+    - tile: {fileID: 2117907923}
+      initialState: 2
+    - tile: {fileID: 1860152459}
+      initialState: 2
+    - tile: {fileID: 4050096}
+      initialState: 2
+    - tile: {fileID: 130445983}
+      initialState: 2
+    - tile: {fileID: 1455998821}
+      initialState: 2
+    - tile: {fileID: 443452511}
+      initialState: 3
+    - tile: {fileID: 1135119004}
+      initialState: 3
+    - tile: {fileID: 975009860}
+      initialState: 2
+    - tile: {fileID: 213391942}
+      initialState: 2
+    - tile: {fileID: 1238505890}
+      initialState: 2
+    - tile: {fileID: 1887512995}
+      initialState: 2
+    - tile: {fileID: 827390050}
+      initialState: 2
+    - tile: {fileID: 1119944188}
+      initialState: 2
+    - tile: {fileID: 2047372360}
+      initialState: 2
+    - tile: {fileID: 136914751}
+      initialState: 2
+    - tile: {fileID: 1125519021}
+      initialState: 0
+    - tile: {fileID: 524613268}
+      initialState: 0
+    - tile: {fileID: 333193718}
+      initialState: 0
+    - tile: {fileID: 605945126}
+      initialState: 0
+    - tile: {fileID: 1663558947}
+      initialState: 2
+    - tile: {fileID: 2040439133}
+      initialState: 2
+    - tile: {fileID: 432391806}
+      initialState: 1
+    - tile: {fileID: 1857370379}
+      initialState: 2
+    - tile: {fileID: 211996726}
+      initialState: 2
+    - tile: {fileID: 1338372039}
+      initialState: 1
+    - tile: {fileID: 1034503621}
+      initialState: 2
+    - tile: {fileID: 127712551}
+      initialState: 2
+    - tile: {fileID: 1635011082}
+      initialState: 3
+    - tile: {fileID: 1107690261}
+      initialState: 3
+    - tile: {fileID: 951080951}
+      initialState: 2
+    - tile: {fileID: 1285899621}
+      initialState: 2
+    - tile: {fileID: 471333070}
+      initialState: 1
+    - tile: {fileID: 1693702140}
+      initialState: 2
+    - tile: {fileID: 1144396541}
+      initialState: 2
+    - tile: {fileID: 1606542456}
+      initialState: 1
+    - tile: {fileID: 1487144728}
+      initialState: 2
+    - tile: {fileID: 564144290}
+      initialState: 2
+    - tile: {fileID: 564611435}
+      initialState: 2
+    - tile: {fileID: 750091007}
+      initialState: 0
+    - tile: {fileID: 650901205}
+      initialState: 0
+    - tile: {fileID: 475237022}
+      initialState: 0
+    - tile: {fileID: 512909756}
+      initialState: 0
+    - tile: {fileID: 181404816}
+      initialState: 2
+    - tile: {fileID: 1271807375}
+      initialState: 2
+    - tile: {fileID: 1222202208}
+      initialState: 1
+    - tile: {fileID: 851759709}
+      initialState: 2
+    - tile: {fileID: 1608763272}
+      initialState: 2
+    - tile: {fileID: 1783446330}
+      initialState: 2
+    - tile: {fileID: 1805793468}
+      initialState: 2
+    - tile: {fileID: 53337316}
+      initialState: 2
+    - tile: {fileID: 1292833422}
+      initialState: 2
+    - tile: {fileID: 1475006615}
+      initialState: 3
+    - tile: {fileID: 1065018287}
+      initialState: 3
+    - tile: {fileID: 1454574565}
+      initialState: 1
+    - tile: {fileID: 923119426}
+      initialState: 2
+    - tile: {fileID: 215782556}
+      initialState: 2
+    - tile: {fileID: 1547088607}
+      initialState: 1
+    - tile: {fileID: 914023841}
+      initialState: 2
+    - tile: {fileID: 803377178}
+      initialState: 2
+    - tile: {fileID: 1896097733}
+      initialState: 2
+    - tile: {fileID: 211601223}
+      initialState: 2
+    - tile: {fileID: 1527267621}
+      initialState: 0
+    - tile: {fileID: 1698132461}
+      initialState: 0
+    - tile: {fileID: 1946234006}
+      initialState: 0
+    - tile: {fileID: 2129999582}
+      initialState: 0
+    - tile: {fileID: 1739273540}
+      initialState: 2
+    - tile: {fileID: 222530718}
+      initialState: 1
+    - tile: {fileID: 107054078}
+      initialState: 2
+    - tile: {fileID: 734416932}
+      initialState: 1
+    - tile: {fileID: 1750096461}
+      initialState: 2
+    - tile: {fileID: 1083794971}
+      initialState: 2
+    - tile: {fileID: 1701383291}
+      initialState: 1
+    - tile: {fileID: 1619294760}
+      initialState: 2
+    - tile: {fileID: 1724503313}
+      initialState: 3
+    - tile: {fileID: 2009748463}
+      initialState: 3
+    - tile: {fileID: 1916730064}
+      initialState: 1
+    - tile: {fileID: 1544243223}
+      initialState: 2
+    - tile: {fileID: 637985422}
+      initialState: 2
+    - tile: {fileID: 130041377}
+      initialState: 1
+    - tile: {fileID: 1762194043}
+      initialState: 2
+    - tile: {fileID: 607897987}
+      initialState: 2
+    - tile: {fileID: 1585443607}
+      initialState: 2
+    - tile: {fileID: 660156405}
+      initialState: 2
+    - tile: {fileID: 1953964335}
+      initialState: 1
+    - tile: {fileID: 1539587909}
+      initialState: 0
+    - tile: {fileID: 1114076943}
+      initialState: 0
+    - tile: {fileID: 1389372858}
+      initialState: 0
+    - tile: {fileID: 160747804}
+      initialState: 0
+    - tile: {fileID: 1365838445}
+      initialState: 2
+    - tile: {fileID: 1331425171}
+      initialState: 1
+    - tile: {fileID: 986462843}
+      initialState: 2
+    - tile: {fileID: 1484788927}
+      initialState: 1
+    - tile: {fileID: 1777264726}
+      initialState: 2
+    - tile: {fileID: 1143355522}
+      initialState: 2
+    - tile: {fileID: 1169482576}
+      initialState: 2
+    - tile: {fileID: 1454177897}
+      initialState: 1
+    - tile: {fileID: 2076890606}
+      initialState: 2
+    - tile: {fileID: 361922617}
+      initialState: 3
+    - tile: {fileID: 1886153967}
+      initialState: 3
+    - tile: {fileID: 854845188}
+      initialState: 2
+    - tile: {fileID: 406765847}
+      initialState: 2
+    - tile: {fileID: 1918036259}
+      initialState: 2
+    - tile: {fileID: 278546660}
+      initialState: 1
+    - tile: {fileID: 16077377}
+      initialState: 2
+    - tile: {fileID: 1744851167}
+      initialState: 2
+    - tile: {fileID: 1679868236}
+      initialState: 2
+    - tile: {fileID: 970270041}
+      initialState: 1
+    - tile: {fileID: 654959261}
+      initialState: 0
+    - tile: {fileID: 86057393}
+      initialState: 0
+    - tile: {fileID: 1677188067}
+      initialState: 0
+    - tile: {fileID: 1741631925}
+      initialState: 0
+    - tile: {fileID: 8667586}
+      initialState: 0
+    - tile: {fileID: 2114131563}
+      initialState: 0
+    - tile: {fileID: 1605067494}
+      initialState: 0
+    - tile: {fileID: 252511274}
+      initialState: 0
+    - tile: {fileID: 1710453067}
+      initialState: 0
+    - tile: {fileID: 1832486429}
+      initialState: 0
+    - tile: {fileID: 805302589}
+      initialState: 0
+    - tile: {fileID: 33385777}
+      initialState: 0
+    - tile: {fileID: 725905610}
+      initialState: 0
+    - tile: {fileID: 1869987370}
+      initialState: 0
+    - tile: {fileID: 1265416212}
+      initialState: 0
+    - tile: {fileID: 1422908315}
+      initialState: 0
+    - tile: {fileID: 1740924457}
+      initialState: 0
+    - tile: {fileID: 1349421686}
+      initialState: 0
+    - tile: {fileID: 215117270}
+      initialState: 0
+    - tile: {fileID: 53871060}
+      initialState: 0
+    - tile: {fileID: 838902700}
+      initialState: 0
+    - tile: {fileID: 1943402157}
+      initialState: 0
+    - tile: {fileID: 781463544}
+      initialState: 0
+    - tile: {fileID: 1851517836}
+      initialState: 0
+    - tile: {fileID: 804118323}
+      initialState: 0
+    - tile: {fileID: 156932314}
+      initialState: 0
+    - tile: {fileID: 41443042}
+      initialState: 0
+    - tile: {fileID: 1539524243}
+      initialState: 0
+    - tile: {fileID: 1231941528}
+      initialState: 0
+    - tile: {fileID: 38878985}
+      initialState: 0
+    - tile: {fileID: 342466939}
+      initialState: 0
+    - tile: {fileID: 1599712421}
+      initialState: 0
+    - tile: {fileID: 239646707}
+      initialState: 0
+    - tile: {fileID: 1358482142}
+      initialState: 0
+    - tile: {fileID: 1712700873}
+      initialState: 0
+    - tile: {fileID: 1121083990}
+      initialState: 0
+    - tile: {fileID: 1692881194}
+      initialState: 0
+    - tile: {fileID: 1981290616}
+      initialState: 0
+    - tile: {fileID: 25472244}
+      initialState: 0
+    - tile: {fileID: 745626717}
+      initialState: 0
+    - tile: {fileID: 1996259880}
+      initialState: 0
+    - tile: {fileID: 1934657388}
+      initialState: 0
+    - tile: {fileID: 800083213}
+      initialState: 0
+    - tile: {fileID: 707661620}
+      initialState: 0
+    - tile: {fileID: 1295581701}
+      initialState: 0
+    - tile: {fileID: 1739027315}
+      initialState: 0
+    - tile: {fileID: 1988000951}
+      initialState: 0
+    - tile: {fileID: 2035536997}
+      initialState: 0
   numberSetups:
   - name: 5
     tileConfigs:
@@ -7789,6 +8297,7 @@ MonoBehaviour:
       initialState: 2
     - tile: {fileID: 2035536997}
       initialState: 2
+  blueTilesCount: 20
 --- !u!4 &441436359
 Transform:
   m_ObjectHideFlags: 0
@@ -9400,7 +9909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livesCounterText: {fileID: 995728896}
-  resetScoreButton: {fileID: 0}
 --- !u!4 &587323689 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1127412743754870470, guid: 8e96961268a904a418a3a7224d588f0d, type: 3}
@@ -26040,6 +26548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb38a1081e8f945b3ec089facce8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetScoreButton: {fileID: 0}
 --- !u!4 &1977453661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1127412743754870470, guid: 8e96961268a904a418a3a7224d588f0d, type: 3}

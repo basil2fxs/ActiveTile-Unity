@@ -39,6 +39,9 @@ public class TileScript : MonoBehaviour
     void OnMouseDown()
     {
         // This ensures that changes only happen during play mode
+
+        //might need this:
+        //if (currentState == TileState.Point)
         if (Application.isPlaying)
         {
             HandleTileInteraction();
@@ -63,6 +66,7 @@ public class TileScript : MonoBehaviour
                 case TileState.Point:
                     SetState(TileState.Neutral); // Change to neutral, simulate scoring points
                     ScoreManager.instance?.AddPoints(true); // Simplified null-check with '?'
+                    LevelManager.instance?.BlueTileClaimed(); // Notify LevelManager
                     break;
                 case TileState.Danger:
                     StartCoroutine(FlashDangerTile()); // Flash to indicate a life lost
