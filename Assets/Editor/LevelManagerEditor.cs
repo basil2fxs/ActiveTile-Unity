@@ -25,6 +25,7 @@ public class LevelManagerEditor : Editor
         {
             AddSelectedTilesToConfig();
         }
+        DrawDefaultInspector();
     }
 
     private void AddSelectedTilesToConfig()
