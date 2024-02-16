@@ -9,7 +9,7 @@ public class TileScript : MonoBehaviour
     public enum TileState { Safe, Point, Neutral, Danger }
     public TileState currentState = TileState.Neutral;
     public Material safeMaterial, pointMaterial, neutralMaterial, dangerMaterial, triggerMaterial;
-
+    public bool wasLastBlue = false;
     private Renderer tileRenderer; // Reference to the Renderer component
 
     private void Awake()
@@ -17,7 +17,6 @@ public class TileScript : MonoBehaviour
         tileRenderer = GetComponent<Renderer>();
         UpdateMaterial(); // Ensure the correct material is applied upon awakening
     }
-
     // This method is now public to allow external scripts (like a level editor tool) to set the tile's state
     public void SetState(TileState state, bool updateMaterialImmediately = true)
     {
@@ -52,9 +51,14 @@ public class TileScript : MonoBehaviour
     {
         Material originalMaterial = tileRenderer.material; // Store the original material
         GameManager.instance?.DeductLife(); // Simplified null-check with '?'
-        tileRenderer.material = triggerMaterial; // Directly set to trigger material for flashing effect
-        yield return new WaitForSeconds(1); // Wait for 1 second
+        for(int i = 0; i < 6; i++)
+        {
+            tileRenderer.material = triggerMaterial; // Directly set to trigger material for flashing effect
+            yield return new WaitForSeconds(0.5f); // Wait for 1 second
+            tileRenderer.material = triggerMaterial;
+        }
         tileRenderer.material = originalMaterial; // Revert to the original material
+        UpdateMaterial();
     }
 
     private void HandleTileInteraction()

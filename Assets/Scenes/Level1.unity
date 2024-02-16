@@ -3925,6 +3925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   lifeCooldown: 2
+  levelManager: {fileID: 441436358}
 --- !u!4 &337815931
 Transform:
   m_ObjectHideFlags: 0
@@ -5365,9 +5366,9 @@ MonoBehaviour:
     - tile: {fileID: 318472709}
       initialState: 1
     - tile: {fileID: 1713812061}
-      initialState: 3
+      initialState: 1
     - tile: {fileID: 469916108}
-      initialState: 3
+      initialState: 1
     - tile: {fileID: 540380020}
       initialState: 1
     - tile: {fileID: 2126597402}
@@ -5409,9 +5410,9 @@ MonoBehaviour:
     - tile: {fileID: 1435404325}
       initialState: 2
     - tile: {fileID: 1778060034}
-      initialState: 3
+      initialState: 2
     - tile: {fileID: 928046957}
-      initialState: 3
+      initialState: 2
     - tile: {fileID: 858271865}
       initialState: 2
     - tile: {fileID: 565423966}
@@ -5457,9 +5458,9 @@ MonoBehaviour:
     - tile: {fileID: 1455998821}
       initialState: 2
     - tile: {fileID: 443452511}
-      initialState: 3
+      initialState: 1
     - tile: {fileID: 1135119004}
-      initialState: 3
+      initialState: 1
     - tile: {fileID: 975009860}
       initialState: 2
     - tile: {fileID: 213391942}
@@ -5501,9 +5502,9 @@ MonoBehaviour:
     - tile: {fileID: 127712551}
       initialState: 2
     - tile: {fileID: 1635011082}
-      initialState: 3
+      initialState: 2
     - tile: {fileID: 1107690261}
-      initialState: 3
+      initialState: 1
     - tile: {fileID: 951080951}
       initialState: 2
     - tile: {fileID: 1285899621}
@@ -5549,9 +5550,9 @@ MonoBehaviour:
     - tile: {fileID: 1292833422}
       initialState: 2
     - tile: {fileID: 1475006615}
-      initialState: 3
+      initialState: 2
     - tile: {fileID: 1065018287}
-      initialState: 3
+      initialState: 2
     - tile: {fileID: 1454574565}
       initialState: 1
     - tile: {fileID: 923119426}
@@ -5593,9 +5594,9 @@ MonoBehaviour:
     - tile: {fileID: 1619294760}
       initialState: 2
     - tile: {fileID: 1724503313}
-      initialState: 3
+      initialState: 1
     - tile: {fileID: 2009748463}
-      initialState: 3
+      initialState: 2
     - tile: {fileID: 1916730064}
       initialState: 1
     - tile: {fileID: 1544243223}
@@ -5641,9 +5642,9 @@ MonoBehaviour:
     - tile: {fileID: 2076890606}
       initialState: 2
     - tile: {fileID: 361922617}
-      initialState: 3
+      initialState: 1
     - tile: {fileID: 1886153967}
-      initialState: 3
+      initialState: 2
     - tile: {fileID: 854845188}
       initialState: 2
     - tile: {fileID: 406765847}
@@ -8298,6 +8299,7 @@ MonoBehaviour:
     - tile: {fileID: 2035536997}
       initialState: 2
   blueTilesCount: 20
+  redtileSpeed: 0.5
   tiles:
   - {fileID: 1035992376}
   - {fileID: 740956210}

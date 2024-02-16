@@ -6,8 +6,6 @@ public class TileAnimationController : MonoBehaviour
 {
     public List<AnimationSequence> rowAnimations = new List<AnimationSequence>();
     public List<AnimationSequence> columnAnimations = new List<AnimationSequence>();
-
-    public Material greenMaterial, redMaterial, neutralMaterial;
     public float animationDelay = 0.5f; // Delay between animating each row/column
     public float revertDelay = 2.0f; // Delay before reverting to neutralMaterial
 
@@ -19,54 +17,123 @@ public class TileAnimationController : MonoBehaviour
     }
 
     // Initiates the animation for all row sequences
-    public void StartRowAnimation(Material material, float delayBetweenTiles, float delayBeforeReverting)
+     // Initiates the animation for all row sequences
+    public void StartRowAnimation(TileScript.TileState state, float delay, bool inGameCond)
     {
-        StartCoroutine(AnimateTiles(rowAnimations, material, delayBetweenTiles, delayBeforeReverting));
+        StartCoroutine(AnimateTiles(rowAnimations, state, delay, inGameCond));
     }
 
-    public void StartColumnAnimation(Material material, float delayBetweenTiles, float delayBeforeReverting)
+    public void StartColumnAnimation(TileScript.TileState state, float delay, bool inGameCond)
     {
-        StartCoroutine(AnimateTiles(columnAnimations, material, delayBetweenTiles, delayBeforeReverting));
+        StartCoroutine(AnimateTiles(columnAnimations, state, delay, inGameCond));
     }
 
-
-    public void AnimateSequence(List<AnimationSequence> sequences, Material startMaterial, float startDelay, float revertStartDelay)
+    public void AnimateSequence(List<AnimationSequence> sequences, TileScript.TileState state, float delay, bool inGameCond)
     {
-        StartCoroutine(AnimateTiles(sequences, startMaterial, startDelay, revertStartDelay));
+        StartCoroutine(AnimateTiles(sequences, state, delay, inGameCond));
     }
 
-    IEnumerator AnimateTiles(List<AnimationSequence> sequences, Material startMaterial, float startDelay, float revertStartDelay)
+    IEnumerator AnimateTiles(List<AnimationSequence> sequences, TileScript.TileState state, float delay, bool inGameCond)
     {
-        foreach (var sequence in sequences)
+        if (inGameCond) // Only animate if the game condition is met
         {
-            foreach (var tile in sequence.tiles)
+            List<TileScript> previouslyAnimatedTiles = new List<TileScript>(); // To keep track of tiles animated in the last sequence
+
+            foreach (var sequence in sequences)
             {
-                if (tile != null)
+                if (GameManager.isGameOver)
                 {
-                    Renderer tileRenderer = tile.GetComponent<Renderer>();
-                    if (tileRenderer != null)
+                    yield break; // Exit the coroutine early
+                }
+                // Reset previously animated tiles to their original state unless they were safe
+                foreach (var prevTileScript in previouslyAnimatedTiles)
+                {
+                    if (prevTileScript.currentState == TileScript.TileState.Danger)
                     {
-                        tileRenderer.material = startMaterial;
+                        // If the tile was previously turned red by the animation, and it was originally blue,
+                        // revert it back to blue instead of making it neutral
+                        prevTileScript.SetState(prevTileScript.wasLastBlue ? TileScript.TileState.Point : TileScript.TileState.Neutral, true);
+                    }
+                    if (GameManager.isGameOver)
+                    {
+                        yield break; // Exit the coroutine early
                     }
                 }
+
+                previouslyAnimatedTiles.Clear(); // Clear the list for the next sequence
+
+                // Animate the current sequence of tiles
+                foreach (var tile in sequence.tiles)
+                {
+                    if (tile != null)
+                    {
+                        TileScript tileScript = tile.GetComponent<TileScript>();
+                        if (tileScript != null && tileScript.currentState != TileScript.TileState.Safe)
+                        {
+                            // Remember the tile's original state before changing it
+                            tileScript.wasLastBlue = tileScript.currentState == TileScript.TileState.Point;
+
+                            // Now, animate the current tile
+                            tileScript.SetState(state, true);
+
+                            // Add this tile to the list of previously animated tiles
+                            previouslyAnimatedTiles.Add(tileScript);
+                        }
+                    }
+                }
+
+                // Wait for the specified delay before continuing to the next sequence
+                yield return new WaitForSeconds(delay);
             }
-            yield return new WaitForSeconds(startDelay); // Delay for each tile's animation
+
+            // Optionally, reset the last sequence of tiles back to their original state
+            foreach (var tileScript in previouslyAnimatedTiles)
+            {
+                if (tileScript.currentState == TileScript.TileState.Danger)
+                {
+                    tileScript.SetState(tileScript.wasLastBlue ? TileScript.TileState.Point : TileScript.TileState.Neutral, true);
+                }
+            }
         }
-         // Optionally revert each tile to neutralMaterial after specified delay
-         foreach (var sequence in sequences)
+        if (!inGameCond)//animations pre and post game
         {
-            foreach (var tile in sequence.tiles)
+            foreach (var sequence in sequences)
             {
-                if (tile != null)
+                foreach (var tile in sequence.tiles)
                 {
-                    Renderer tileRenderer = tile.GetComponent<Renderer>();
-                    if (tileRenderer != null)
+                    if (tile != null)
                     {
-                        tileRenderer.material = neutralMaterial;
+                        TileScript tileScript = tile.GetComponent<TileScript>();
+                        if (tileScript != null)
+                        {
+                            if(state == TileScript.TileState.Danger)
+                            {
+                                tileScript.SetState(TileScript.TileState.Danger, true);
+                            }
+                            else if(state == TileScript.TileState.Safe)
+                            {
+                                tileScript.SetState(TileScript.TileState.Safe, true);
+                            }
+                        }
                     }
                 }
+                yield return new WaitForSeconds(delay);
             }
-            yield return new WaitForSeconds(startDelay); // Delay for each tile's animation
+            foreach (var sequence in sequences)
+            {
+                foreach (var tile in sequence.tiles)
+                {
+                    if (tile != null)
+                    {
+                        TileScript tileScript = tile.GetComponent<TileScript>();
+                        if (tileScript != null)
+                        {
+                            tileScript.SetState(TileScript.TileState.Neutral, true);
+                        }
+                    }
+                }
+                yield return new WaitForSeconds(delay);
+            }
         }
     }
 }

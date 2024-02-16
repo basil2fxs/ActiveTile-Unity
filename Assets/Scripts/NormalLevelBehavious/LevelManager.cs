@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     public List<TileConfiguration> levelSetups = new List<TileConfiguration>();
     public List<TileConfiguration> numberSetups = new List<TileConfiguration>(); // Assume these are for the countdown visuals
     public int blueTilesCount = 50; // This will keep track of the blue tiles
+    public float redtileSpeed = 0.5f;
     public static LevelManager instance;
     public List<GameObject> tiles; // Ensure this list is populated with all your tile GameObjects
     public TileAnimationController tileAnimationController;
@@ -49,13 +50,19 @@ public class LevelManager : MonoBehaviour
         blueTilesCount--;
         if (blueTilesCount <= 31)
         {
+            GameManager.isGameOver = true;
             StartCoroutine(AnimateTilesSafeMode());
         }
     }
 
-    void TransitionToLevel2()
+    IEnumerator TransitionToLevel2()
     {
         InitializeLevel(1);
+        yield return new WaitForSeconds(2f);//delay before red line starts
+        //add while loop here for red and to stop it moving on level completion/fail
+        tileAnimationController.StartRowAnimation(TileScript.TileState.Danger, redtileSpeed, true);
+        //yield return new WaitForSeconds(redtileSpeed); 
+        //tileAnimationController.StartRowAnimation(TileScript.TileState.Neutral, redtileSpeed, true);
     }
 
     IEnumerator AnimateTilesSafeMode()
@@ -70,12 +77,12 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // Wait a bit before starting the green animation
 
         // Now turn them green one by one
-        tileAnimationController.StartRowAnimation(tileAnimationController.greenMaterial, 0.07f, 0.07f);
+        tileAnimationController.StartRowAnimation(TileScript.TileState.Safe, 0.07f, false);
         yield return new WaitForSeconds(4f); 
 
         // Once all tiles are green, set the game to safe mode and prepare for the next level
         GameManager.instance.SetSafeSpace(false);
-        TransitionToLevel2(); //loop Level 1.1
+        StartCoroutine(TransitionToLevel2()); //loop Level 1.1
     }
     public IEnumerator AnimateTilesFailMode()
     {
@@ -89,9 +96,9 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // Wait a bit before starting the green animation
 
         // Now turn them green one by one
-        tileAnimationController.StartRowAnimation(tileAnimationController.redMaterial, 0.07f, 0.07f);
+        tileAnimationController.StartRowAnimation(TileScript.TileState.Danger, 0.07f, false);
         yield return new WaitForSeconds(4f);
-
+        GameManager.instance.SetSafeSpace(false);
         // Once all tiles are green, set the game to safe mode and prepare for the next level
         //GameManager.instance.SetSafeSpace(false);
         GameManager.instance.ResetLives();
@@ -118,6 +125,7 @@ public class LevelManager : MonoBehaviour
             Debug.LogError("Level index out of range.");
             return;
         }
+        GameManager.isGameOver = false;
         StartCoroutine(ApplyConfiguration(levelSetups[levelIndex], false));
         TileScript[] tiles = FindObjectsOfType<TileScript>();
         blueTilesCount = tiles.Count(tile => tile.currentState == TileScript.TileState.Point);

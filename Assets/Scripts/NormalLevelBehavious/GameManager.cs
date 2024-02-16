@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private bool isInSafeSpace = true; // Flag to indicate if the player is in a safe space
      public float lifeCooldown = 2f; // Cooldown in seconds before a life can be deducted again
      private float lastLifeTime = -2f;
+     public static bool isGameOver = false;
     
     public LevelManager levelManager;
 
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
                 {
                     // Handle game over logic here
                     Debug.Log("Game Over!");
+                    isGameOver = true;
                     LevelManager.instance.StartCoroutine(LevelManager.instance.AnimateTilesFailMode());
                 }
             }
