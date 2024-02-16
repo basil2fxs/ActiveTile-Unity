@@ -124,3 +124,4 @@ MonoBehaviour:
   neutralMaterial: {fileID: 2100000, guid: d78fb7748755358438be1d2bec8e313a, type: 2}
   dangerMaterial: {fileID: 2100000, guid: cd005e58605b0f74289afc94ccbee61b, type: 2}
   triggerMaterial: {fileID: 2100000, guid: 6fd04d4e3938ca04ba4465fb441248d1, type: 2}
+  wasLastBlue: 0

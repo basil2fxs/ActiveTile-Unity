@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 
 // This ensures the script can run in edit mode for immediate feedback
@@ -37,10 +38,6 @@ public class TileScript : MonoBehaviour
 
     void OnMouseDown()
     {
-        // This ensures that changes only happen during play mode
-
-        //might need this:
-        //if (currentState == TileState.Point)
         if (Application.isPlaying)
         {
             HandleTileInteraction();
@@ -61,7 +58,7 @@ public class TileScript : MonoBehaviour
         UpdateMaterial();
     }
 
-    private void HandleTileInteraction()
+    public void HandleTileInteraction()
     {
         if (!(GameManager.instance.IsInSafeSpace))
         {
@@ -80,7 +77,7 @@ public class TileScript : MonoBehaviour
     }
 
     // A helper method to update the tile's material based on its current state
-    private void UpdateMaterial()
+    public void UpdateMaterial()
     {
         if (tileRenderer == null) return; // Ensure this method only runs when the tileRenderer is available
 
@@ -100,4 +97,27 @@ public class TileScript : MonoBehaviour
                 break;
         }
     }
+    public string GetCurrentMaterialState()
+    {
+        // Use the material's name for comparison
+        string currentMaterialName = tileRenderer.material.name;
+
+        // Remove the " (Instance)" part that Unity adds to instantiated material names at runtime
+        currentMaterialName = currentMaterialName.Replace(" (Instance)", "");
+
+        if (currentMaterialName == safeMaterial.name)
+            return "green";
+        else if (currentMaterialName == pointMaterial.name)
+            return "blue";
+        else if (currentMaterialName == neutralMaterial.name)
+            return "black";
+        else if (currentMaterialName == dangerMaterial.name)
+            return "red";
+        else if (currentMaterialName == triggerMaterial.name)
+            return "yellow";
+        else
+            return "unknown";
+    }
+
+
 }
