@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
     {
         //Debug.Log("BlueTileClaimed");
         blueTilesCount--;
-        if (blueTilesCount <= 0)
+        if (blueTilesCount <= 31)
         {
             GameManager.isGameOver = true;
             StartCoroutine(AnimateTilesSafeMode());

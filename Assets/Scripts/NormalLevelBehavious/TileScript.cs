@@ -12,6 +12,7 @@ public class TileScript : MonoBehaviour
     public Material safeMaterial, pointMaterial, neutralMaterial, dangerMaterial, triggerMaterial;
     public bool wasLastBlue = false;
     private Renderer tileRenderer; // Reference to the Renderer component
+     private float lastFlashTime = 0f;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class TileScript : MonoBehaviour
         }
     }
 
+
     IEnumerator FlashDangerTile()
     {
         Material originalMaterial = tileRenderer.material; // Store the original material
@@ -51,8 +53,9 @@ public class TileScript : MonoBehaviour
         for(int i = 0; i < 6; i++)
         {
             tileRenderer.material = triggerMaterial; // Directly set to trigger material for flashing effect
-            yield return new WaitForSeconds(0.5f); // Wait for 1 second
-            tileRenderer.material = triggerMaterial;
+            yield return new WaitForSeconds(0.4f);
+            tileRenderer.material = dangerMaterial;
+            yield return new WaitForSeconds(0.2f);
         }
         tileRenderer.material = originalMaterial; // Revert to the original material
         UpdateMaterial();
@@ -70,7 +73,12 @@ public class TileScript : MonoBehaviour
                     LevelManager.instance?.BlueTileClaimed(); // Notify LevelManager
                     break;
                 case TileState.Danger:
-                    StartCoroutine(FlashDangerTile()); // Flash to indicate a life lost
+                    // Check if more than 1 second has passed since the last flash
+                    if (Time.time - lastFlashTime >= 2f)
+                    {
+                        StartCoroutine(FlashDangerTile()); // Flash to indicate a life lost
+                        lastFlashTime = Time.time; // Update the last flash time
+                    }
                     break;
             }
         }
