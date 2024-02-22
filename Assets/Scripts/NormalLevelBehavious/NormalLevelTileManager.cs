@@ -25,7 +25,10 @@ public class NormalLevelTileManager : MonoBehaviour
         {
             if (Application.isPlaying)
             {
-                tile.HandleTileInteraction();
+                if(isActive)
+                {
+                    tile.HandleTileInteraction();
+                }
             }
 
         }

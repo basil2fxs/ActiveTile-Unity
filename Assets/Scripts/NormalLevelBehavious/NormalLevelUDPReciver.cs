@@ -70,6 +70,7 @@ public class NormalLevelUDPReciver : MonoBehaviour
                     int senderPort = result.RemoteEndPoint.Port;
 
                     string hexString = BitConverter.ToString(result.Buffer).Replace("-", "");
+                    //Debug.Log("hexstring" + hexString);
 
                     ProcessReceivedData(hexString, senderPort);
                 }
